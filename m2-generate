@@ -7,14 +7,14 @@ APP_DIR="$( dirname "${BASH_SOURCE[0]}" )"
 
 available_generators=$(ls ${APP_DIR}/generators)
 
+if [[ -z $1 ]] || [[ ! ${available_generators[@]} =~ $1 ]]; then
+  echo "Wrong input."
+  echo "Usage: ./m2-generate [ "${available_generators[@]}" ]"
+
+  exit
+fi
+
 for generator in ${available_generators[@]}; do
-  if [[ -z $1 ]] || [[ ! ${available_generators[@]} =~ $1 ]]; then
-    echo "Wrong input."
-    echo "Usage: ./m2-generate [ "${available_generators[@]}" ]"
-
-    exit
-  fi
-
   if [[ $1 == ${generator} ]]; then
     source ${APP_DIR}/generators/${generator}
   else
