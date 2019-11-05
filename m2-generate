@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+IFS=$'\n\t'
+
 APP_DIR="$( dirname "${BASH_SOURCE[0]}" )"
 
 available_generators=$(ls ${APP_DIR}/generators)
