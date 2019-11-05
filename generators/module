@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+echo "Vendor name: "
+read vendor_name
+echo "Module name: "
+read module_name
+
+if [[ ! -d app ]]; then
+  mkdir app
+fi
+
+if [[ ! -d app/code ]]; then
+  mkdir app/code
+fi
+
+if [[ ! -d app/code/${vendor_name} ]]; then
+  mkdir app/code/${vendor_name}
+fi
+
+if [[ -d app/code/${vendor_name}/${module_name} ]]; then
+  echo "Module ${vendor_name}_${module_name} already exists!"
+  echo "Use another module name."
+else
+  module_path=app/code/${vendor_name}/${module_name}
+  mkdir ${module_path}
+
+  if [[ ! -d ${module_path}/etc ]]; then
+    mkdir ${module_path}/etc
+  fi
+
+  if [[ -f ${module_path}/etc/module.xml ]]; then
+    echo "File module.xml already exists!"
+  else
+    cat ${APP_DIR}/templates/etc/module.xml \
+    | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
+    | sed "s/{MODULE_NAME}/${module_name}/g" \
+    > ${module_path}/etc/module.xml
+
+    echo "File module.xml generated successfully."
+  fi
+
+  if [[ -f ${module_path}/registration.php ]]; then
+    echo "File registration.php already exists!"
+  else
+    cat ${APP_DIR}/templates/registration.php \
+    | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
+    | sed "s/{MODULE_NAME}/${module_name}/g" \
+    > ${module_path}/registration.php
+
+    echo "File registration.php generated successfully."
+  fi
+
+  if [[ -f ${module_path}/composer.json ]]; then
+    echo "File composer.json already exists!"
+  else
+    cat ${APP_DIR}/templates/composer.json \
+    | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
+    | sed "s/{MODULE_NAME}/${module_name}/g" \
+    > ${module_path}/composer.json
+
+    echo "File composer.json generated successfully."
+  fi
+
+  echo "Module ${vendor_name}_${module_name} generation finished successfully."
+fi
+
+exit
