@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${APP_DIR}/core/check_module
+source ${APP_DIR}/core/*
 
 echo "Route id: "
 read route_id

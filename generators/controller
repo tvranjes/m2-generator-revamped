@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
-source ${APP_DIR}/core/check_module
+source ${APP_DIR}/core/*
 
 module_path=app/code/${vendor_name}/${module_name}
 
   echo "Controller name: "
   read controller_name
 
-if [[ ! -d ${module_path}/${controller_name} ]]; then
-  mkdir ${module_path}/${controller_name}
+if [[ ! -d ${module_path}/Controller ]]; then
+  mkdir ${module_path}/Controller
+fi
+
+if [[ ! -d ${module_path}/Controller/${controller_name} ]]; then
+  mkdir ${module_path}/Controller/${controller_name}
 fi
 
 echo "Controller action: "
@@ -24,7 +28,7 @@ else
   | sed "s/{MODULE_NAME}/${module_name}/g" \
   | sed "s/{CONTROLLER_NAME}/${controller_name}/g" \
   | sed "s/{ACTION_NAME}/${controller_action}/g" \
-  > ${module_path}/${controller_name}/${controller_action}.php
+  > ${module_path}/Controller/${controller_name}/${controller_action}.php
 
   echo "File ${controller_action}.php generated successfully."
 fi
