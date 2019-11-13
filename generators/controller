@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${APP_DIR}/inc/check_module
+source ${APP_DIR}/core/check_module
 
 module_path=app/code/${vendor_name}/${module_name}
 
