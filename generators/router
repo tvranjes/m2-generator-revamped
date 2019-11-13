@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+source ${APP_DIR}/core/*
+
+if [[ ! -d ${MODULE_PATH}/Controller ]]; then
+  mkdir ${MODULE_PATH}/Controller
+fi
+
+if [[ -f ${MODULE_PATH}/Controller/Router.php ]]; then
+  echo "File Router.php already exists!"
+
+  exit
+else
+  cat ${APP_DIR}/templates/Controller/Router.php \
+  | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
+  | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
+  > ${MODULE_PATH}/Controller/Router.php
+
+  echo "File Router.php generated successfully."
+fi
+
+exit
