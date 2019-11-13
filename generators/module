@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 echo "Vendor name: "
-read vendor_name
+read VENDOR_NAME
 echo "Module name: "
-read module_name
+read MODULE_NAME
 
 
-MODULE_PATH=app/code/${vendor_name}/${module_name}
+MODULE_PATH=app/code/${VENDOR_NAME}/${MODULE_NAME}
 
 if [[ ! -d app ]]; then
   mkdir app
@@ -16,12 +16,12 @@ if [[ ! -d app/code ]]; then
   mkdir app/code
 fi
 
-if [[ ! -d app/code/${vendor_name} ]]; then
-  mkdir app/code/${vendor_name}
+if [[ ! -d app/code/${VENDOR_NAME} ]]; then
+  mkdir app/code/${VENDOR_NAME}
 fi
 
-if [[ -d app/code/${vendor_name}/${module_name} ]]; then
-  echo "Module ${vendor_name}_${module_name} already exists!"
+if [[ -d app/code/${VENDOR_NAME}/${MODULE_NAME} ]]; then
+  echo "Module ${VENDOR_NAME}_${MODULE_NAME} already exists!"
   echo "Use another module name."
 else
   mkdir ${MODULE_PATH}
@@ -34,8 +34,8 @@ else
     echo "File module.xml already exists!"
   else
     cat ${APP_DIR}/templates/etc/module.xml \
-    | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
-    | sed "s/{MODULE_NAME}/${module_name}/g" \
+    | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
+    | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
     > ${MODULE_PATH}/etc/module.xml
 
     echo "File module.xml generated successfully."
@@ -45,8 +45,8 @@ else
     echo "File registration.php already exists!"
   else
     cat ${APP_DIR}/templates/registration.php \
-    | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
-    | sed "s/{MODULE_NAME}/${module_name}/g" \
+    | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
+    | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
     > ${MODULE_PATH}/registration.php
 
     echo "File registration.php generated successfully."
@@ -56,14 +56,14 @@ else
     echo "File composer.json already exists!"
   else
     cat ${APP_DIR}/templates/composer.json \
-    | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
-    | sed "s/{MODULE_NAME}/${module_name}/g" \
+    | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
+    | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
     > ${MODULE_PATH}/composer.json
 
     echo "File composer.json generated successfully."
   fi
 
-  echo "Module ${vendor_name}_${module_name} generation finished successfully."
+  echo "Module ${VENDOR_NAME}_${MODULE_NAME} generation finished successfully."
 fi
 
 exit

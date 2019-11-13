@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 echo "Vendor name: "
-read vendor_name
+read VENDOR_NAME
 echo "Module name: "
-read module_name
+read MODULE_NAME
 
-MODULE_PATH=app/code/${vendor_name}/${module_name}
+MODULE_PATH=app/code/${VENDOR_NAME}/${MODULE_NAME}
 
 if [[ ! -d ${MODULE_PATH} ]]; then
-  echo "Module ${vendor_name}_${module_name} does not exist!"
+  echo "Module ${VENDOR_NAME}_${MODULE_NAME} does not exist!"
   echo "Generate a module first."
 
   exit
