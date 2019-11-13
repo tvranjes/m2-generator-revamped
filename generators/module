@@ -5,6 +5,9 @@ read vendor_name
 echo "Module name: "
 read module_name
 
+
+MODULE_PATH=app/code/${vendor_name}/${module_name}
+
 if [[ ! -d app ]]; then
   mkdir app
 fi
@@ -21,42 +24,41 @@ if [[ -d app/code/${vendor_name}/${module_name} ]]; then
   echo "Module ${vendor_name}_${module_name} already exists!"
   echo "Use another module name."
 else
-  module_path=app/code/${vendor_name}/${module_name}
-  mkdir ${module_path}
+  mkdir ${MODULE_PATH}
 
-  if [[ ! -d ${module_path}/etc ]]; then
-    mkdir ${module_path}/etc
+  if [[ ! -d ${MODULE_PATH}/etc ]]; then
+    mkdir ${MODULE_PATH}/etc
   fi
 
-  if [[ -f ${module_path}/etc/module.xml ]]; then
+  if [[ -f ${MODULE_PATH}/etc/module.xml ]]; then
     echo "File module.xml already exists!"
   else
     cat ${APP_DIR}/templates/etc/module.xml \
     | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
     | sed "s/{MODULE_NAME}/${module_name}/g" \
-    > ${module_path}/etc/module.xml
+    > ${MODULE_PATH}/etc/module.xml
 
     echo "File module.xml generated successfully."
   fi
 
-  if [[ -f ${module_path}/registration.php ]]; then
+  if [[ -f ${MODULE_PATH}/registration.php ]]; then
     echo "File registration.php already exists!"
   else
     cat ${APP_DIR}/templates/registration.php \
     | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
     | sed "s/{MODULE_NAME}/${module_name}/g" \
-    > ${module_path}/registration.php
+    > ${MODULE_PATH}/registration.php
 
     echo "File registration.php generated successfully."
   fi
 
-  if [[ -f ${module_path}/composer.json ]]; then
+  if [[ -f ${MODULE_PATH}/composer.json ]]; then
     echo "File composer.json already exists!"
   else
     cat ${APP_DIR}/templates/composer.json \
     | sed "s/{VENDOR_NAME}/${vendor_name}/g" \
     | sed "s/{MODULE_NAME}/${module_name}/g" \
-    > ${module_path}/composer.json
+    > ${MODULE_PATH}/composer.json
 
     echo "File composer.json generated successfully."
   fi

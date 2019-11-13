@@ -7,17 +7,15 @@ read route_id
 echo "Route frontname: "
 read route_frontname
 
-module_path=app/code/${vendor_name}/${module_name}
-
-if [[ ! -d ${module_path}/etc ]]; then
-  mkdir ${module_path}/etc
+if [[ ! -d ${MODULE_PATH}/etc ]]; then
+  mkdir ${MODULE_PATH}/etc
 fi
 
-if [[ ! -d ${module_path}/etc/frontend ]]; then
-  mkdir ${module_path}/etc/frontend
+if [[ ! -d ${MODULE_PATH}/etc/frontend ]]; then
+  mkdir ${MODULE_PATH}/etc/frontend
 fi
 
-if [[ -f ${module_path}/etc/frontend/routes.xml ]]; then
+if [[ -f ${MODULE_PATH}/etc/frontend/routes.xml ]]; then
   echo "File routes.xml already exists!"
   exit
 else
@@ -26,7 +24,7 @@ else
   | sed "s/{MODULE_NAME}/${module_name}/g" \
   | sed "s/{ROUTE_ID}/${route_id}/g" \
   | sed "s/{ROUTE_FRONTNAME}/${route_frontname}/g" \
-  > ${module_path}/etc/frontend/routes.xml
+  > ${MODULE_PATH}/etc/frontend/routes.xml
 
   echo "File routes.xml generated successfully."
 fi
