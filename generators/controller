@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Vendor name: "
-read vendor_name
-echo "Module name: "
-read module_name
-
-if [[ ! -d app/code/${vendor_name}/${module_name} ]]; then
-  echo "Module ${vendor_name}_${module_name} does not exist!"
-  echo "Generate a module first."
-
-  exit
-fi
+source ${APP_DIR}/inc/check_module
 
 module_path=app/code/${vendor_name}/${module_name}
 
