@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ${APP_DIR}/core/*
+source ${APP_DIR}/core/check_module
 
 echo "Model name: "
 read model_name

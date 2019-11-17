@@ -16,6 +16,7 @@ fi
 
 for generator in ${available_generators[@]}; do
   if [[ $1 == ${generator} ]]; then
+    GENERATOR_KEYWORD=$1
     source ${APP_DIR}/generators/${generator}
   else
     continue

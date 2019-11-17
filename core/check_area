@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [[ ${GENERATOR_KEYWORD} == "route" ]]; then
+
+echo "Route area (frontend/adminhtml): "
+read AREA
+
+available_areas=("frontend" "adminhtml")
+
+if [[ ! ${available_areas[@]} =~ "${AREA}" ]]; then
+  echo "Wrong area."
+  echo "Use frontend or adminhtml for area."
+
+  exit
+fi
+
+fi

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source ${APP_DIR}/core/*
+source ${APP_DIR}/core/check_module
+source ${APP_DIR}/core/check_area
 
 echo "Route id: "
 read route_id
@@ -11,22 +12,22 @@ if [[ ! -d ${MODULE_PATH}/etc ]]; then
   mkdir ${MODULE_PATH}/etc
 fi
 
-if [[ ! -d ${MODULE_PATH}/etc/frontend ]]; then
-  mkdir ${MODULE_PATH}/etc/frontend
+if [[ ! -d ${MODULE_PATH}/etc/${AREA} ]]; then
+  mkdir ${MODULE_PATH}/etc/${AREA}
 fi
 
-if [[ -f ${MODULE_PATH}/etc/frontend/routes.xml ]]; then
+if [[ -f ${MODULE_PATH}/etc/${AREA}/routes.xml ]]; then
   echo "File routes.xml already exists!"
   exit
 else
-  cat ${APP_DIR}/templates/etc/frontend/routes.xml \
+  cat ${APP_DIR}/templates/etc/${AREA}/routes.xml \
   | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
   | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
   | sed "s/{ROUTE_ID}/${route_id}/g" \
   | sed "s/{ROUTE_FRONTNAME}/${route_frontname}/g" \
-  > ${MODULE_PATH}/etc/frontend/routes.xml
+  > ${MODULE_PATH}/etc/${AREA}/routes.xml
 
-  echo "File routes.xml generated successfully."
+  echo "File ${AREA}/routes.xml generated successfully."
 fi
 
 exit
