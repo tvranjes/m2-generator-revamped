@@ -7,20 +7,18 @@ APP_DIR="$( dirname "${BASH_SOURCE[0]}" )"
 
 available_generators=$(ls ${APP_DIR}/generators)
 
-if [[ $# -eq 0 ]] || [[ ! ${available_generators[@]} =~ $1 ]]; then
-  echo "Wrong input."
-  echo "Usage: ./m2-generate [ "${available_generators[@]}" ]"
-
-  exit
-fi
-
-for generator in ${available_generators[@]}; do
-  if [[ $1 == ${generator} ]]; then
-    GENERATOR_KEYWORD=$1
-    source ${APP_DIR}/generators/${generator}
-  else
-    continue
-  fi
+echo "Select generator: "
+PS3="Choose generator number: "
+select select_generator in ${available_generators[@]} quit
+do
+  case ${select_generator} in
+    quit ) echo "Bye."; exit;;
+    * ) if [[ ! -z ${select_generator} ]] && [[ ${available_generators[@]} =~ ${select_generator} ]]; then
+          source ${APP_DIR}/generators/${select_generator}
+        else
+          echo "Invalid option. Try again or choose quit."
+        fi
+  esac
 done
 
 exit
