@@ -2,6 +2,45 @@
 
 source ${APP_DIR}/core/check_module
 
+
+echo "Router name: "
+read router_name
+
+
+if [[ ! -d ${MODULE_PATH}/etc ]]; then
+  mkdir ${MODULE_PATH}/etc
+fi
+
+if [[ ! -d ${MODULE_PATH}/etc/frontend ]]; then
+  mkdir ${MODULE_PATH}/etc/frontend
+fi
+
+if [[ ! -f ${MODULE_PATH}/etc/frontend/di.xml ]]; then
+  di_xml=$(cat ${APP_DIR}/templates/etc/di.xml)
+  echo "\
+  ${di_xml}
+  " > ${MODULE_PATH}/etc/frontend/di.xml
+
+  echo "File frontend/di.xml generated successfully."
+fi
+
+di_xml_temp=$(cat ${MODULE_PATH}/etc/frontend/di.xml | sed 's#</config>##g')
+echo "\
+${di_xml_temp}
+" > ${MODULE_PATH}/etc/frontend/di.xml
+di_router=$(cat ${APP_DIR}/templates/etc/di-templates/frontend/di-router \
+| sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
+| sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
+| sed "s/{ROUTER_NAME}/${router_name}/g")
+echo "\
+${di_router}
+" >> ${MODULE_PATH}/etc/frontend/di.xml
+echo "\
+</config>
+" >> ${MODULE_PATH}/etc/frontend/di.xml
+
+echo "File frontend/di.xml updated successfully."
+
 if [[ ! -d ${MODULE_PATH}/Controller ]]; then
   mkdir ${MODULE_PATH}/Controller
 fi

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "Select area: "
+PS3="Area number: "
+select select_area in frontend adminhtml
+do
+  case ${select_area} in
+    frontend ) AREA="frontend"; break;;
+    adminhtml ) AREA="adminhtml"; break;;
+    * ) echo "Invalid option. Try again."; continue;;
+  esac
+done

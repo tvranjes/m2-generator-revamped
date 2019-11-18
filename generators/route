@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source ${APP_DIR}/core/check_module
-source ${APP_DIR}/core/check_area
+source ${APP_DIR}/core/select_area
 
 echo "Route id: "
 read route_id
@@ -20,7 +20,7 @@ if [[ -f ${MODULE_PATH}/etc/${AREA}/routes.xml ]]; then
   echo "File routes.xml already exists!"
   exit
 else
-  cat ${APP_DIR}/templates/etc/${AREA}/routes.xml \
+  cat ${APP_DIR}/templates/etc/routes.xml \
   | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
   | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
   | sed "s/{ROUTE_ID}/${route_id}/g" \
