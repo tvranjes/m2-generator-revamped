@@ -3,7 +3,7 @@
 source ${APP_DIR}/core/check_module
 
 echo "Model name: "
-read model_name
+read -r model_name
 
 if [[ -f ${MODULE_PATH}/Model/${model_name}.php ]]; then
   echo "Model ${model_name} already exists!"
@@ -26,10 +26,10 @@ if [[ -f ${MODULE_PATH}/Model/ResourceModel/${model_name}/Collection.php ]]; the
 fi
 
 echo "Table name: "
-read table_name
+read -r table_name
 
 echo "ID column value: "
-read id_value
+read -r id_value
 
 if [[ ! -d ${MODULE_PATH}/Model ]]; then
   mkdir ${MODULE_PATH}/Model

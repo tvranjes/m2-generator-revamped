@@ -3,7 +3,7 @@
 source ${APP_DIR}/core/check_module
 
   echo "Controller name: "
-  read controller_name
+  read -r controller_name
 
 if [[ ! -d ${MODULE_PATH}/Controller ]]; then
   mkdir ${MODULE_PATH}/Controller
@@ -14,7 +14,7 @@ if [[ ! -d ${MODULE_PATH}/Controller/${controller_name} ]]; then
 fi
 
 echo "Controller action: "
-read controller_action
+read -r controller_action
 
 if [[ -f ${MODULE_PATH}/Controller/${controller_name}/${controller_action}.php ]]; then
   echo "Controller action ${controller_action} already exists!"

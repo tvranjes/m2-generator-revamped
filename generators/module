@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 echo "Vendor name: "
-read VENDOR_NAME
+read -r VENDOR_NAME
 echo "Module name: "
-read MODULE_NAME
+read -r MODULE_NAME
 
 
 MODULE_PATH=app/code/${VENDOR_NAME}/${MODULE_NAME}

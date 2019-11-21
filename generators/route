@@ -4,9 +4,9 @@ source ${APP_DIR}/core/check_module
 source ${APP_DIR}/core/select_area
 
 echo "Route id: "
-read route_id
+read -r route_id
 echo "Route frontname: "
-read route_frontname
+read -r route_frontname
 
 if [[ ! -d ${MODULE_PATH}/etc ]]; then
   mkdir ${MODULE_PATH}/etc

@@ -5,7 +5,7 @@ source ${APP_DIR}/core/select_area
 
 
 echo "Router name: "
-read router_name
+read -r router_name
 
 if [[ ! -d ${MODULE_PATH}/etc ]]; then
   mkdir ${MODULE_PATH}/etc
