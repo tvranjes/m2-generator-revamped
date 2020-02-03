@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 source ${APP_DIR}/core/check_module
 source ${APP_DIR}/core/select_area
