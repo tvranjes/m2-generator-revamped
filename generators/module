@@ -33,10 +33,7 @@ else
   if [[ -f ${MODULE_PATH}/etc/module.xml ]]; then
     echo "File module.xml already exists!"
   else
-    cat ${APP_DIR}/templates/etc/module_xml \
-    | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
-    | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
-    > ${MODULE_PATH}/etc/module.xml
+    cat ${APP_DIR}/templates/etc/module_xml | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g" > ${MODULE_PATH}/etc/module.xml
 
     echo "File module.xml generated successfully."
   fi
@@ -44,10 +41,7 @@ else
   if [[ -f ${MODULE_PATH}/registration.php ]]; then
     echo "File registration.php already exists!"
   else
-    cat ${APP_DIR}/templates/registration.php \
-    | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
-    | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
-    > ${MODULE_PATH}/registration.php
+    cat ${APP_DIR}/templates/registration.php | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g" > ${MODULE_PATH}/registration.php
 
     echo "File registration.php generated successfully."
   fi
@@ -55,10 +49,7 @@ else
   if [[ -f ${MODULE_PATH}/composer.json ]]; then
     echo "File composer.json already exists!"
   else
-    cat ${APP_DIR}/templates/composer_json \
-    | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
-    | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
-    > ${MODULE_PATH}/composer.json
+    cat ${APP_DIR}/templates/composer_json | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g" > ${MODULE_PATH}/composer.json
 
     echo "File composer.json generated successfully."
   fi
