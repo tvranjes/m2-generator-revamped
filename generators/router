@@ -16,7 +16,7 @@ if [[ ! -d ${MODULE_PATH}/etc/${AREA} ]]; then
 fi
 
 if [[ ! -f ${MODULE_PATH}/etc/${AREA}/di.xml ]]; then
-  di_xml=$(cat ${APP_DIR}/templates/etc/di.xml)
+  di_xml=$(cat ${APP_DIR}/templates/etc/di_xml)
   echo "\
 ${di_xml}\
 " > ${MODULE_PATH}/etc/${AREA}/di.xml
@@ -24,12 +24,12 @@ ${di_xml}\
   echo "File ${AREA}/di.xml generated successfully."
 fi
 
-if [[ -z $(cat app/code/Test/Module/etc/${AREA}/di.xml| grep "${router_name}") ]]; then
+if [[ -z $(cat ${MODULE_PATH}/etc/${AREA}/di.xml| grep "${router_name}") ]]; then
 di_xml_temp=$(cat ${MODULE_PATH}/etc/${AREA}/di.xml | sed 's#</config>##g')
 echo "\
 ${di_xml_temp}\
 " > ${MODULE_PATH}/etc/${AREA}/di.xml
-di_router=$(cat ${APP_DIR}/templates/etc/di-templates/di-router \
+di_router=$(cat ${APP_DIR}/templates/etc/di-templates/di-router_xml \
 | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
 | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
 | sed "s/{ROUTER_NAME}/${router_name}/g")
@@ -54,7 +54,7 @@ if [[ -f ${MODULE_PATH}/Controller/Router.php ]]; then
 
   exit
 else
-  cat ${APP_DIR}/templates/Controller/Router.php \
+  cat ${APP_DIR}/templates/controller/router_php \
   | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
   | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
   > ${MODULE_PATH}/Controller/Router.php

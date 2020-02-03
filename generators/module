@@ -33,7 +33,7 @@ else
   if [[ -f ${MODULE_PATH}/etc/module.xml ]]; then
     echo "File module.xml already exists!"
   else
-    cat ${APP_DIR}/templates/etc/module.xml \
+    cat ${APP_DIR}/templates/etc/module_xml \
     | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
     | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
     > ${MODULE_PATH}/etc/module.xml
@@ -55,7 +55,7 @@ else
   if [[ -f ${MODULE_PATH}/composer.json ]]; then
     echo "File composer.json already exists!"
   else
-    cat ${APP_DIR}/templates/composer.json \
+    cat ${APP_DIR}/templates/composer_json \
     | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" \
     | sed "s/{MODULE_NAME}/${MODULE_NAME}/g" \
     > ${MODULE_PATH}/composer.json
