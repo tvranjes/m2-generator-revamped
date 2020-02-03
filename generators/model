@@ -43,15 +43,15 @@ if [[ ! -d ${MODULE_PATH}/Model/ResourceModel/${model_name} ]]; then
   mkdir ${MODULE_PATH}/Model/ResourceModel/${model_name}
 fi
 
-cat ${APP_DIR}/templates/model/model-name_php | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g"; "s/{MODEL_NAME}/${model_name}/g" > ${MODULE_PATH}/Model/${model_name}.php
+sed -e "s/{VENDOR_NAME}/${VENDOR_NAME}/g" -e "s/{MODULE_NAME}/${MODULE_NAME}/g" -e "s/{MODEL_NAME}/${model_name}/g" ${APP_DIR}/templates/model/model-name_php > ${MODULE_PATH}/Model/${model_name}.php
 
 echo "File Model/${model_name}.php generated successfully."
 
-cat ${APP_DIR}/templates/model/resourcemodel/model-name_php | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g"; "s/{MODEL_NAME}/${model_name}/g"; "s/{TABLE_NAME}/${table_name}/g"; "s/{ID_VALUE}/${id_value}/g" > ${MODULE_PATH}/Model/ResourceModel/${model_name}.php
+sed -e "s/{VENDOR_NAME}/${VENDOR_NAME}/g" -e "s/{MODULE_NAME}/${MODULE_NAME}/g" -e "s/{MODEL_NAME}/${model_name}/g" -e "s/{TABLE_NAME}/${table_name}/g" -e "s/{ID_VALUE}/${id_value}/g" ${APP_DIR}/templates/model/resourcemodel/model-name_php > ${MODULE_PATH}/Model/ResourceModel/${model_name}.php
 
 echo "File Model/ResourceModel/${model_name}.php generated successfully."
 
-cat ${APP_DIR}/templates/model/resourcemodel/modelname/collection_php | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g"; "s/{MODEL_NAME}/${model_name}/g" > ${MODULE_PATH}/Model/ResourceModel/${model_name}/Collection.php
+sed -e "s/{VENDOR_NAME}/${VENDOR_NAME}/g" -e "s/{MODULE_NAME}/${MODULE_NAME}/g" -e "s/{MODEL_NAME}/${model_name}/g" ${APP_DIR}/templates/model/resourcemodel/modelname/collection_php > ${MODULE_PATH}/Model/ResourceModel/${model_name}/Collection.php
 
 echo "File Model/ResourceModel/${model_name}/Collection.php generated successfully."
 

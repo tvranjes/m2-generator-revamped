@@ -21,7 +21,7 @@ if [[ -f ${MODULE_PATH}/Controller/${controller_name}/${controller_action}.php ]
 
   exit
 else
-  cat ${APP_DIR}/templates/Controller/controller-action_php | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g"; sed "s/{CONTROLLER_NAME}/${controller_name}/g"; "s/{ACTION_NAME}/${controller_action}/g" > ${MODULE_PATH}/Controller/${controller_name}/${controller_action}.php
+  sed -e "s/{VENDOR_NAME}/${VENDOR_NAME}/g" -e "s/{MODULE_NAME}/${MODULE_NAME}/g" -e "s/{CONTROLLER_NAME}/${controller_name}/g" -e "s/{ACTION_NAME}/${controller_action}/g" ${APP_DIR}/templates/controller/controller-action_php > ${MODULE_PATH}/Controller/${controller_name}/${controller_action}.php
 
   echo "File ${controller_action}.php generated successfully."
 fi

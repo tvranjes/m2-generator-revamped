@@ -29,7 +29,7 @@ di_xml_temp=$(cat ${MODULE_PATH}/etc/${AREA}/di.xml | sed 's#</config>##g')
 echo "\
 ${di_xml_temp}\
 " > ${MODULE_PATH}/etc/${AREA}/di.xml
-di_router=$(cat ${APP_DIR}/templates/etc/di-templates/di-router_xml | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g"; "s/{ROUTER_NAME}/${router_name}/g")
+di_router=$(sed -e "s/{VENDOR_NAME}/${VENDOR_NAME}/g" -e "s/{MODULE_NAME}/${MODULE_NAME}/g" -e "s/{ROUTER_NAME}/${router_name}/g" ${APP_DIR}/templates/etc/di-templates/di-router_xml)
 echo "\
 ${di_router}
 " >> ${MODULE_PATH}/etc/${AREA}/di.xml
@@ -51,7 +51,7 @@ if [[ -f ${MODULE_PATH}/Controller/Router.php ]]; then
 
   exit
 else
-  cat ${APP_DIR}/templates/controller/router_php | sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g"; "s/{MODULE_NAME}/${MODULE_NAME}/g"  > ${MODULE_PATH}/Controller/Router.php
+  sed "s/{VENDOR_NAME}/${VENDOR_NAME}/g" -e "s/{MODULE_NAME}/${MODULE_NAME}/g" ${APP_DIR}/templates/controller/router_php  > ${MODULE_PATH}/Controller/Router.php
 
   echo "File Router.php generated successfully."
 fi
